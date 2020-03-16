@@ -1,0 +1,3674 @@
+{
+	"info": {
+		"_postman_id": "b5d52276-5217-4662-a2e5-1a088861b268",
+		"name": "lesson_api_titarchuk",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "doRegister",
+			"item": [
+				{
+					"name": "doRegister_dup_email",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "c5640cff-eeb3-48ff-85be-c93afba3f934",
+								"exec": [
+									"pm.test(\"Type is correct\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.type).to.eql(\"error\");\r",
+									"});\r",
+									"pm.test(\"Message is correct\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.message).to.include(\"уже есть в базе\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "c2a9616f-16e6-4aea-a030-0af383426540",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"{{e-mailLogin}}\",\r\n    \"name\": \"{{$randomUserName}}\",\r\n    \"password\": \"{{$randomPassword}}\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://users.bugred.ru/tasks/rest/doregister",
+							"protocol": "http",
+							"host": [
+								"users",
+								"bugred",
+								"ru"
+							],
+							"path": [
+								"tasks",
+								"rest",
+								"doregister"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "doRegister_dup_name",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "46da66b4-8221-4d00-8718-52939cf15d84",
+								"exec": [
+									"pm.test(\"Type is correct\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.type).to.eql(\"error\");\r",
+									"});\r",
+									"pm.test(\"Message is correct\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.message).to.include(\"уже есть в базе\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"{{$randomEmail}}\",\r\n    \"name\": \"{{name-login}}\",\r\n    \"password\": \"{{$randomPassword}}\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://users.bugred.ru/tasks/rest/doregister",
+							"protocol": "http",
+							"host": [
+								"users",
+								"bugred",
+								"ru"
+							],
+							"path": [
+								"tasks",
+								"rest",
+								"doregister"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "doRegister_empty_all",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "6996abf9-deae-4299-a046-01473919cf35",
+								"exec": [
+									"pm.test(\"Type is correct\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.type).to.eql(\"error\");\r",
+									"});\r",
+									"pm.test(\"Message is correct\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.message).to.include(\"Email, фио, пароль - поля обязательные к заполнению\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"\",\r\n    \"name\": \"\",\r\n    \"password\": \"\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://users.bugred.ru/tasks/rest/doregister",
+							"protocol": "http",
+							"host": [
+								"users",
+								"bugred",
+								"ru"
+							],
+							"path": [
+								"tasks",
+								"rest",
+								"doregister"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "doRegister_empty_name&password",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "2aa4c537-f91f-477c-b34c-c084225d5496",
+								"exec": [
+									"pm.test(\"Type is correct\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.type).to.eql(\"error\");\r",
+									"});\r",
+									"pm.test(\"Message is correct\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.message).to.include(\"поля фио и пароль являются обязательными\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"{{$randomEmail}}\",\r\n    \"name\": \"\",\r\n    \"password\": \"\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://users.bugred.ru/tasks/rest/doregister",
+							"protocol": "http",
+							"host": [
+								"users",
+								"bugred",
+								"ru"
+							],
+							"path": [
+								"tasks",
+								"rest",
+								"doregister"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "doRegister_empty_password",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "86da5e1b-1999-47c4-9d6a-19ae3cda44c1",
+								"exec": [
+									"pm.test(\"Type is correct\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.type).to.eql(\"error\");\r",
+									"});\r",
+									"pm.test(\"Message is correct\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.message).to.include(\"поле пароль не может быть пустым\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"{{$randomEmail}}\",\r\n    \"name\": \"{{$randomUserName}}\",\r\n    \"password\": \"\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://users.bugred.ru/tasks/rest/doregister",
+							"protocol": "http",
+							"host": [
+								"users",
+								"bugred",
+								"ru"
+							],
+							"path": [
+								"tasks",
+								"rest",
+								"doregister"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "doRegister_no_password_field",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "50025f2f-7316-4eb6-a2e0-1d644d6f975e",
+								"exec": [
+									"pm.test(\"Type is correct\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.type).to.eql(\"error\");\r",
+									"});\r",
+									"pm.test(\"Message is correct\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.message).to.include(\"Параметр password является обязательным!\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"{{$randomEmail}}\",\r\n    \"name\": \"{{$randomUserName}}\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://users.bugred.ru/tasks/rest/doregister",
+							"protocol": "http",
+							"host": [
+								"users",
+								"bugred",
+								"ru"
+							],
+							"path": [
+								"tasks",
+								"rest",
+								"doregister"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "doRegister_spaces_name",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "21997124-ab42-43dd-b6d1-9f59a96fcd07",
+								"exec": [
+									"pm.test(\"Type is correct\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.type).to.eql(\"error\");\r",
+									"});\r",
+									"pm.test(\"Message is correct\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.message).to.include(\"Поля фио и пароль не могут быть пустыми\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"{{$randomEmail}}\",\r\n    \"name\": \"            \",\r\n    \"password\": \"\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://users.bugred.ru/tasks/rest/doregister",
+							"protocol": "http",
+							"host": [
+								"users",
+								"bugred",
+								"ru"
+							],
+							"path": [
+								"tasks",
+								"rest",
+								"doregister"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "doRegister_name_sql",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "6416a1a5-f55a-4612-b761-cfd5285c52ff",
+								"exec": [
+									"pm.test(\"Type is correct\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.type).to.eql(\"error\");\r",
+									"});\r",
+									"pm.test(\"Message is correct\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.message).to.include(\"Некорректное фио\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"{{$randomEmail}}\",\r\n    \"name\": \"\" OR 1=1; --\",\r\n    \"password\": \"\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://users.bugred.ru/tasks/rest/doregister",
+							"protocol": "http",
+							"host": [
+								"users",
+								"bugred",
+								"ru"
+							],
+							"path": [
+								"tasks",
+								"rest",
+								"doregister"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "doLogin",
+			"item": [
+				{
+					"name": "doLogin",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "771ee50e-c02e-485e-a080-f65dc6e651b0",
+								"exec": [
+									"pm.test(\"Result is correct\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.result).to.eql(true);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n   \"email\": \"fortestpurp1@upcmaill.com\",\r\n    \"name\": \"Rick\",\r\n    \"password\": \"Morty\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://users.bugred.ru/tasks/rest/dologin",
+							"protocol": "http",
+							"host": [
+								"users",
+								"bugred",
+								"ru"
+							],
+							"path": [
+								"tasks",
+								"rest",
+								"dologin"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "doLogin_empty_email",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "141420bb-5001-4770-be83-a1773f0a516a",
+								"exec": [
+									"pm.test(\"Result is correct\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.result).to.eql(false);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"\",\r\n   \"name\": \"{{name-login}}\",\r\n    \"password\": \"{{password-login}}\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://users.bugred.ru/tasks/rest/dologin",
+							"protocol": "http",
+							"host": [
+								"users",
+								"bugred",
+								"ru"
+							],
+							"path": [
+								"tasks",
+								"rest",
+								"dologin"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "doLogin_empty_name",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "c4317bfc-f7d0-4dcc-9cf1-723b4eb2a989",
+								"exec": [
+									"pm.test(\"Result is correct\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.result).to.eql(false);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"{{e-mail-login}}\",\r\n    \"name\": \"\",\r\n    \"password\": \"{{password-login}}\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://users.bugred.ru/tasks/rest/dologin",
+							"protocol": "http",
+							"host": [
+								"users",
+								"bugred",
+								"ru"
+							],
+							"path": [
+								"tasks",
+								"rest",
+								"dologin"
+							]
+						},
+						"description": "false"
+					},
+					"response": []
+				},
+				{
+					"name": "doLogin_empty_password",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "8a050735-feb4-490c-9056-a4f5e30c58d3",
+								"exec": [
+									"pm.test(\"Result is correct\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.result).to.eql(false);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"{{e-mail-login}}\",\r\n    \"name\": \"{{name-login}}\",\r\n    \"password\": \"\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://users.bugred.ru/tasks/rest/dologin",
+							"protocol": "http",
+							"host": [
+								"users",
+								"bugred",
+								"ru"
+							],
+							"path": [
+								"tasks",
+								"rest",
+								"dologin"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "doLogin_no_email",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "6b24b682-1fc6-433d-b762-641f3c250167",
+								"exec": [
+									"pm.test(\"Type is correct\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.type).to.eql(\"error\");\r",
+									"});\r",
+									"pm.test(\"Message is correct\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.message).to.include(\"Параметр email является обязательным!\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"{{name-login}}\",\r\n    \"password\": \"{{password-login}}\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://users.bugred.ru/tasks/rest/dologin",
+							"protocol": "http",
+							"host": [
+								"users",
+								"bugred",
+								"ru"
+							],
+							"path": [
+								"tasks",
+								"rest",
+								"dologin"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "doLogin_no_name",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "f44fb5f3-a96f-4c72-8afc-7dba036b39ff",
+								"exec": [
+									"pm.test(\"Type is correct\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.type).to.eql(\"error\");\r",
+									"});\r",
+									"pm.test(\"Message is correct\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.message).to.include(\"Параметр фио является обязательным!\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"email\": \"fortestpurp1@upcmaill.com\",\r\n    \"password\": \"Morty\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://users.bugred.ru/tasks/rest/dologin",
+							"protocol": "http",
+							"host": [
+								"users",
+								"bugred",
+								"ru"
+							],
+							"path": [
+								"tasks",
+								"rest",
+								"dologin"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "doLogin_no_password",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "fc627de3-220e-418a-bf43-11fc964b2e0d",
+								"exec": [
+									"pm.test(\"Type is correct\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.type).to.eql(\"error\");\r",
+									"});\r",
+									"pm.test(\"Message is correct\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.message).to.include(\"Параметр password является обязательным!\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"fortestpurp1@upcmaill.com\",\r\n    \"name\": \"Ricky\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://users.bugred.ru/tasks/rest/dologin",
+							"protocol": "http",
+							"host": [
+								"users",
+								"bugred",
+								"ru"
+							],
+							"path": [
+								"tasks",
+								"rest",
+								"dologin"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "doLogin_invalid_email",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "72de0444-e450-4ea5-9caf-b32fb300e453",
+								"exec": [
+									"pm.test(\"Result is correct\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.result).to.eql(false);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"{{$randomEmail}}\",\r\n    \"name\": \"Ricky\",\r\n    \"password\": \"Morty\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://users.bugred.ru/tasks/rest/dologin",
+							"protocol": "http",
+							"host": [
+								"users",
+								"bugred",
+								"ru"
+							],
+							"path": [
+								"tasks",
+								"rest",
+								"dologin"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "doLogin_invalid_name",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "d1c294e2-cfd6-4812-90c4-7b5e2f6d43d8",
+								"exec": [
+									"pm.test(\"Result is correct\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.result).to.eql(false);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"fortestpurp1@upcmaill.com\",\r\n    \"name\": \"Rikky\",\r\n    \"password\": \"Morty\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://users.bugred.ru/tasks/rest/dologin",
+							"protocol": "http",
+							"host": [
+								"users",
+								"bugred",
+								"ru"
+							],
+							"path": [
+								"tasks",
+								"rest",
+								"dologin"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "doLogin_invalid_password",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "6e190f98-56f2-42c2-8343-bb31a8a0324a",
+								"exec": [
+									"pm.test(\"Result is correct\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.result).to.eql(false);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"fortestpurp1@upcmaill.com\",\r\n    \"name\": \"Ricky\",\r\n    \"password\": \"M0rty\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://users.bugred.ru/tasks/rest/dologin",
+							"protocol": "http",
+							"host": [
+								"users",
+								"bugred",
+								"ru"
+							],
+							"path": [
+								"tasks",
+								"rest",
+								"dologin"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "CreateTask",
+			"item": [
+				{
+					"name": "CreateTask",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "d4f86d41-ee1c-40ab-8b19-12624bf158c3",
+								"exec": [
+									"const jsonData = pm.response.json();\r",
+									"console.log('JSON_DATA', jsonData);\r",
+									"pm.environment.set(\"task-id\", jsonData.id_task);\r",
+									"\r",
+									"pm.test(\"Type is correct\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.type).to.eql(\"success\");\r",
+									"});\r",
+									"pm.test(\"Message is correct\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.message).to.include(\"Задача успешно создана!\");\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "c7ec55e0-d0ae-439e-8d31-4fa108b4ea18",
+								"exec": [
+									"pm.globals.get(\"e-mail-login\");"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\"task_title\": \"Time paradox\",\n\"task_description\": \"Create a reef time paradox for Fry\",\n\"email_owner\": \"payokap692@upcmaill.com\",\n\"email_assign\": \"payokap692@upcmaill.com\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://users.bugred.ru/tasks/rest/CreateTask?task-id={{task-id}}",
+							"protocol": "http",
+							"host": [
+								"users",
+								"bugred",
+								"ru"
+							],
+							"path": [
+								"tasks",
+								"rest",
+								"CreateTask"
+							],
+							"query": [
+								{
+									"key": "task-id",
+									"value": "{{task-id}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "CreateTask_emptyTitle",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "122c5925-5a00-482c-81fa-9148a9a1efa7",
+								"exec": [
+									"pm.test(\"Type is correct\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.type).to.eql(\"error\");\r",
+									"});\r",
+									"pm.test(\"Message is correct\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.message).to.include(\"Параметр task_title имеет  неверное значение\");\r",
+									"});\r",
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\"task_title\": \"\",\n\"task_description\": \"Create a reef time paradox for Fry\",\n\"email_owner\": \"{{e-mailLogin}}\",\n\"email_assign\": \"{{e-mailLogin}}\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://users.bugred.ru/tasks/rest/CreateTask",
+							"protocol": "http",
+							"host": [
+								"users",
+								"bugred",
+								"ru"
+							],
+							"path": [
+								"tasks",
+								"rest",
+								"CreateTask"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "CreateTask_spacesTitle",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "72db6d35-cb06-4390-a61e-1b763d91cb90",
+								"exec": [
+									"pm.test(\"Type is correct\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.type).to.eql(\"error\");\r",
+									"});\r",
+									"pm.test(\"Message is correct\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.message).to.include(\"Параметр task_title имеет  неверное значение\");\r",
+									"});\r",
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\"task_title\": \"    \",\n\"task_description\": \"Create a reef time paradox for Fry\",\n\"email_owner\": \"{{e-mailLogin}}\",\n\"email_assign\": \"{{e-mailLogin}}\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://users.bugred.ru/tasks/rest/CreateTask",
+							"protocol": "http",
+							"host": [
+								"users",
+								"bugred",
+								"ru"
+							],
+							"path": [
+								"tasks",
+								"rest",
+								"CreateTask"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "CreateTask_49chars_InTitle",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "35de2f78-01fe-4d4a-9c0c-a6f9dd68c4a5",
+								"exec": [
+									"pm.test(\"Type is correct\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.type).to.eql(\"success\");\r",
+									"});\r",
+									"pm.test(\"Message is correct\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.message).to.include(\"Задача успешно создана!\");\r",
+									"});\r",
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\"task_title\": \"this task title will be forty-nine characters 49!\",\n\"task_description\": \"Create a reef time paradox for Fry\",\n\"email_owner\": \"{{e-mailLogin}}\",\n\"email_assign\": \"{{e-mailLogin}}\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://users.bugred.ru/tasks/rest/CreateTask",
+							"protocol": "http",
+							"host": [
+								"users",
+								"bugred",
+								"ru"
+							],
+							"path": [
+								"tasks",
+								"rest",
+								"CreateTask"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "CreateTask_50chars_InTitle",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "136dcb82-55e8-46ea-8be2-6290b638b333",
+								"exec": [
+									"pm.test(\"Type is correct\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.type).to.eql(\"success\");\r",
+									"});\r",
+									"pm.test(\"Message is correct\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.message).to.include(\"Задача успешно создана!\");\r",
+									"});\r",
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\"task_title\": \"this task title will be forty-nine characters 49!\",\n\"task_description\": \"Create a reef time paradox for Fry\",\n\"email_owner\": \"{{e-mailLogin}}\",\n\"email_assign\": \"{{e-mailLogin}}\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://users.bugred.ru/tasks/rest/CreateTask",
+							"protocol": "http",
+							"host": [
+								"users",
+								"bugred",
+								"ru"
+							],
+							"path": [
+								"tasks",
+								"rest",
+								"CreateTask"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "CreateTask_51chars_InTitle",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "ae92ec0a-8aab-4fa8-ac71-d23d83ec92e8",
+								"exec": [
+									"pm.test(\"Type is correct\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.type).to.eql(\"error\");\r",
+									"});\r",
+									"pm.test(\"Message is correct\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.message).to.include(\"Превышено допустимое количество символов в поле  task_title\");\r",
+									"});\r",
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\"task_title\": \"this task title will be fifty characters 50! Carl!\",\n\"task_description\": \"Create a reef time paradox for Fry\",\n\"email_owner\": \"{{e-mailLogin}}\",\n\"email_assign\": \"{{e-mailLogin}}\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://users.bugred.ru/tasks/rest/CreateTask",
+							"protocol": "http",
+							"host": [
+								"users",
+								"bugred",
+								"ru"
+							],
+							"path": [
+								"tasks",
+								"rest",
+								"CreateTask"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "CreateTask_emptyDescription",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "430ed8c6-1004-4515-b7dd-8ab494ea710b",
+								"exec": [
+									"pm.test(\"Type is correct\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.type).to.eql(\"error\");\r",
+									"});\r",
+									"pm.test(\"Message is correct\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.message).to.include(\"Параметр task_description имеет  неверное значение\");\r",
+									"});\r",
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\"task_title\": \"Time paradox\",\n\"task_description\": \"\",\n\"email_owner\": \"{{e-mailLogin}}\",\n\"email_assign\": \"{{e-mailLogin}}\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://users.bugred.ru/tasks/rest/CreateTask",
+							"protocol": "http",
+							"host": [
+								"users",
+								"bugred",
+								"ru"
+							],
+							"path": [
+								"tasks",
+								"rest",
+								"CreateTask"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "CreateTask_spacesDescription",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "513216e0-d5a5-48a6-9922-41c71b1c6434",
+								"exec": [
+									"pm.test(\"Type is correct\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.type).to.eql(\"error\");\r",
+									"});\r",
+									"pm.test(\"Message is correct\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.message).to.include(\"Параметр task_description имеет  неверное значение\");\r",
+									"});\r",
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\"task_title\": \"Time paradox\",\n\"task_description\": \"    \",\n\"email_owner\": \"{{e-mailLogin}}\",\n\"email_assign\": \"{{e-mailLogin}}\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://users.bugred.ru/tasks/rest/CreateTask",
+							"protocol": "http",
+							"host": [
+								"users",
+								"bugred",
+								"ru"
+							],
+							"path": [
+								"tasks",
+								"rest",
+								"CreateTask"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "CreateTask_499chars_InDescription",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "5ef5cafc-2ccd-4772-8fd1-541118a41195",
+								"exec": [
+									"pm.test(\"Type is correct\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.type).to.eql(\"success\");\r",
+									"});\r",
+									"pm.test(\"Message is correct\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.message).to.include(\"Задача успешно создана!\");\r",
+									"});\r",
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\"task_title\": \"new one title\",\n\"task_description\": \"In the Pilot episode, Rick told Beth that he loved the eggs that she made him and that her mother would have loved them too if she were still there. In the episode Rick Potion #9, it is revealed that Rick has a very pessimistic worldview, informing Morty that love is just a chemical reaction that compels animals to breed, advising him not to continue the cycle of love, marriage and heartbreak that he had to go through and that his parents would likely go through, encouraging him to direct his12\",\n\"email_owner\": \"{{e-mailLogin}}\",\n\"email_assign\": \"{{e-mailLogin}}\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://users.bugred.ru/tasks/rest/CreateTask",
+							"protocol": "http",
+							"host": [
+								"users",
+								"bugred",
+								"ru"
+							],
+							"path": [
+								"tasks",
+								"rest",
+								"CreateTask"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "CreateTask_500chars_InDescription",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "f488196e-cd04-44dd-9457-1f4538eb2702",
+								"exec": [
+									"pm.test(\"Type is correct\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.type).to.eql(\"success\");\r",
+									"});\r",
+									"pm.test(\"Message is correct\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.message).to.include(\"Задача успешно создана!\");\r",
+									"});\r",
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\"task_title\": \"Time paradox\",\n\"task_description\": \"In the Pilot episode, Rick told Beth that he loved the eggs that she made him and that her mother would have loved them too if she were still there. In the episode Rick Potion #9, it is revealed that Rick has a very pessimistic worldview, informing Morty that love is just a chemical reaction that compels animals to breed, advising him not to continue the cycle of love, marriage and heartbreak that he had to go through and that his parents would likely go through, encouraging him to direct his!!!\",\n\"email_owner\": \"{{e-mailLogin}}\",\n\"email_assign\": \"{{e-mailLogin}}\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://users.bugred.ru/tasks/rest/CreateTask",
+							"protocol": "http",
+							"host": [
+								"users",
+								"bugred",
+								"ru"
+							],
+							"path": [
+								"tasks",
+								"rest",
+								"CreateTask"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "CreateTask_501chars_InDescription",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "742c18d5-84a1-43e0-8102-79a0e0cd7c2a",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"id": "621480b4-8cee-4e5f-8033-bfedf1bd8326",
+								"exec": [
+									"pm.test(\"Type is correct\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.type).to.eql(\"error\");\r",
+									"});\r",
+									"pm.test(\"Message is correct\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.message).to.include(\"Превышено допустимое количество символов в поле  task_title\");\r",
+									"});\r",
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\"task_title\": \"Time paradox\",\n\"task_description\": \"In the Pilot episode, Rick told Beth that he loved the eggs that she made him and that her mother would have loved them too if she were still there. In the episode Rick Potion #9, it is revealed that Rick has a very pessimistic worldview, informing Morty that love is just a chemical reaction that compels animals to breed, advising him not to continue the cycle of love, marriage and heartbreak that he had to go through and that his parents would likely go through, encouraging him to direct his!!!!\",\n\"email_owner\": \"{{e-mailLogin}}\",\n\"email_assign\": \"{{e-mailLogin}}\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://users.bugred.ru/tasks/rest/CreateTask",
+							"protocol": "http",
+							"host": [
+								"users",
+								"bugred",
+								"ru"
+							],
+							"path": [
+								"tasks",
+								"rest",
+								"CreateTask"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "CreateTask_empty_emailOwner",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "482893fe-1c9d-4ec4-a924-72eae6d573c5",
+								"exec": [
+									"pm.test(\"Type is correct\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.type).to.eql(\"error\");\r",
+									"});\r",
+									"pm.test(\"Message is correct\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.message).to.include(\"email_owner  некорректный\");\r",
+									"});\r",
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\"task_title\": \"Time paradox\",\n\"task_description\": \"In the Pilot episode\",\n\"email_owner\": \"\",\n\"email_assign\": \"payokap692@upcmaill.com\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://users.bugred.ru/tasks/rest/CreateTask",
+							"protocol": "http",
+							"host": [
+								"users",
+								"bugred",
+								"ru"
+							],
+							"path": [
+								"tasks",
+								"rest",
+								"CreateTask"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "CreateTask_invalid1_emailOwner",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "7adf95c9-f5cc-4bec-98ef-9de681b7f8cf",
+								"exec": [
+									"pm.test(\"Type is correct\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.type).to.eql(\"error\");\r",
+									"});\r",
+									"pm.test(\"Message is correct\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.message).to.include(\" некорректный\");\r",
+									"});\r",
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\"task_title\": \"Time paradox\",\n\"task_description\": \"In the Pilot episode\",\n\"email_owner\": \" @ .com\",\n\"email_assign\": \"payokap692@upcmaill.com\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://users.bugred.ru/tasks/rest/CreateTask",
+							"protocol": "http",
+							"host": [
+								"users",
+								"bugred",
+								"ru"
+							],
+							"path": [
+								"tasks",
+								"rest",
+								"CreateTask"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "CreateTask_invalid2_emailOwner",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "871d76e0-0257-4889-a3cd-ad1cb12523a5",
+								"exec": [
+									"pm.test(\"Type is correct\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.type).to.eql(\"error\");\r",
+									"});\r",
+									"pm.test(\"Message is correct\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.message).to.include(\"Пользователь не найден c email_owner\");\r",
+									"});\r",
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\"task_title\": \"Time paradox\",\n\"task_description\": \"In the Pilot episode\",\n\"email_owner\": \"{{$randomEmail}}\",\n\"email_assign\": \"payokap692@upcmaill.com\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://users.bugred.ru/tasks/rest/CreateTask",
+							"protocol": "http",
+							"host": [
+								"users",
+								"bugred",
+								"ru"
+							],
+							"path": [
+								"tasks",
+								"rest",
+								"CreateTask"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "CreateTask_invalid3_emailOwner",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "1508312b-3de8-435b-b754-1d421a68a2e7",
+								"exec": [
+									"pm.test(\"Type is correct\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.type).to.eql(\"error\");\r",
+									"});\r",
+									"pm.test(\"Message is correct\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.message).to.include(\"некорректный\");\r",
+									"});\r",
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\"task_title\": \"Time paradox\",\n\"task_description\": \"In the Pilot episode\",\n\"email_owner\": \"     \",\n\"email_assign\": \"payokap692@upcmaill.com\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://users.bugred.ru/tasks/rest/CreateTask",
+							"protocol": "http",
+							"host": [
+								"users",
+								"bugred",
+								"ru"
+							],
+							"path": [
+								"tasks",
+								"rest",
+								"CreateTask"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "CreateTask_invalid1_emailAssign",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "de0d726a-700e-44b7-beb3-970f29436f54",
+								"exec": [
+									"pm.test(\"Type is correct\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.type).to.eql(\"error\");\r",
+									"});\r",
+									"pm.test(\"Message is correct\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.message).to.include(\"Пользователь не найден c email_assign\");\r",
+									"});\r",
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\"task_title\": \"Time paradox\",\n\"task_description\": \"In the Pilot episode\",\n\"email_owner\": \"payokap692@upcmaill.com\",\n\"email_assign\": \"pay0kap692@upcmaill.com\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://users.bugred.ru/tasks/rest/CreateTask",
+							"protocol": "http",
+							"host": [
+								"users",
+								"bugred",
+								"ru"
+							],
+							"path": [
+								"tasks",
+								"rest",
+								"CreateTask"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "CreateTask_invalid2_emailAssign",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "c9ffc923-c27e-4023-a13a-bdbb217d247d",
+								"exec": [
+									"pm.test(\"Type is correct\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.type).to.eql(\"error\");\r",
+									"});\r",
+									"pm.test(\"Message is correct\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.message).to.include(\"Некорректный  email_assign\");\r",
+									"});\r",
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\"task_title\": \"Time paradox\",\n\"task_description\": \"In the Pilot episode\",\n\"email_owner\": \"payokap692@upcmaill.com\",\n\"email_assign\": \"payokap692upcmaill.com\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://users.bugred.ru/tasks/rest/CreateTask",
+							"protocol": "http",
+							"host": [
+								"users",
+								"bugred",
+								"ru"
+							],
+							"path": [
+								"tasks",
+								"rest",
+								"CreateTask"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "CreateCompany",
+			"item": [
+				{
+					"name": "CreateCompany1",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "b89dd1f4-de45-4dd4-9d7d-0c63075a9a02",
+								"exec": [
+									"const jsonData = pm.response.json();\r",
+									"console.log('JSON_DATA', jsonData);\r",
+									"pm.environment.set(\"id-Company\", jsonData.id_company);\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "4fc76040-a024-4383-9ea0-41c66c9a8b1a",
+								"exec": [
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"company_name\": \"Planet Express\",\r\n  \"company_type\": \"ОАО\",\r\n  \"email_owner\": \"payokap692@upcmaill.com\",\r\n  \"company_users\": [\"payokap692@upcmaill.com\"]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://users.bugred.ru/tasks/rest/Createcompany?id-Company={{id-Company}}",
+							"protocol": "http",
+							"host": [
+								"users",
+								"bugred",
+								"ru"
+							],
+							"path": [
+								"tasks",
+								"rest",
+								"Createcompany"
+							],
+							"query": [
+								{
+									"key": "id-Company",
+									"value": "{{id-Company}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "CreateCompany2",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "22ca2c83-ae53-424a-999f-e7848ce8d043",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"id": "ebf16896-dd1e-40a5-8169-8bb5f4441a01",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"company_name\": \"Planet Express\",\r\n  \"company_type\": \"ОАО\",\r\n  \"email_owner\": \"payokap692@upcmaill.com\",\r\n  \"company_users\": [\"payokap692@upcmaill.com\", \"{{e-mailLogin}}\"]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://users.bugred.ru/tasks/rest/Createcompany",
+							"protocol": "http",
+							"host": [
+								"users",
+								"bugred",
+								"ru"
+							],
+							"path": [
+								"tasks",
+								"rest",
+								"Createcompany"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "CreateCompany_companyType_OOO",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "712966b2-a741-4f2b-b50d-281123484ea6",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"company_name\": \"Planet Express\",\r\n  \"company_type\": \"ООО\",\r\n  \"company_users\": [\"{{e-mailLogin}}\", \"payokap692+2@upcmaill.com\", \"payokap692+3@upcmaill.com\"],\r\n  \"email_owner\": \"payokap692@upcmaill.com\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://users.bugred.ru/tasks/rest/Createcompany",
+							"protocol": "http",
+							"host": [
+								"users",
+								"bugred",
+								"ru"
+							],
+							"path": [
+								"tasks",
+								"rest",
+								"Createcompany"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "CreateCompany_companyType_ИП",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "41b823f4-f225-4647-b4b4-62cd8955e6f9",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"company_name\": \"Planet Express\",\r\n  \"company_type\": \"ИП\",\r\n  \"company_users\": [\"payokap692+1@upcmaill.com\", \"payokap692+2@upcmaill.com\", \"payokap692+3@upcmaill.com\"],\r\n  \"email_owner\": \"payokap692@upcmaill.com\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://users.bugred.ru/tasks/rest/Createcompany",
+							"protocol": "http",
+							"host": [
+								"users",
+								"bugred",
+								"ru"
+							],
+							"path": [
+								"tasks",
+								"rest",
+								"Createcompany"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "CreateCompany_ascii_companyType",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "743cc8f9-5348-40a1-beda-d73a8702b74b",
+								"exec": [
+									"pm.test(\"Type is correct\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.type).to.eql(\"error\");\r",
+									"});\r",
+									"pm.test(\"Message is correct\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.message).to.include(\"company_type OAO некорректный\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"company_name\": \"Planet Express\",\r\n  \"company_type\": \"OAO\",\r\n  \"company_users\": [\"payokap692+1@upcmaill.com\", \"payokap692+2@upcmaill.com\", \"payokap692+3@upcmaill.com\"],\r\n  \"email_owner\": \"payokap692@upcmaill.com\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://users.bugred.ru/tasks/rest/Createcompany",
+							"protocol": "http",
+							"host": [
+								"users",
+								"bugred",
+								"ru"
+							],
+							"path": [
+								"tasks",
+								"rest",
+								"Createcompany"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "CreateCompany_empty_CompName",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "41cb6481-2550-4d6b-9934-bf3ad388ef11",
+								"exec": [
+									"pm.test(\"Type is correct\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.type).to.eql(\"error\");\r",
+									"});\r",
+									"pm.test(\"Message is correct\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.message).to.include(\"company_name некорректный\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"company_name\": \"\",\r\n  \"company_type\": \"ОАО\",\r\n  \"company_users\": [\"payokap692+1@upcmaill.com\", \"ronny56@hotmail.com\"],\r\n  \"email_owner\": \"payokap692@upcmaill.com\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://users.bugred.ru/tasks/rest/Createcompany",
+							"protocol": "http",
+							"host": [
+								"users",
+								"bugred",
+								"ru"
+							],
+							"path": [
+								"tasks",
+								"rest",
+								"Createcompany"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "CreateCompany_symbols_CompName",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "464b394a-ec53-4361-9ec5-5c6522091171",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"company_name\": \"!123#%\",\r\n  \"company_type\": \"ОАО\",\r\n  \"company_users\": [\"payokap692+1@upcmaill.com\", \"ronny56@hotmail.com\"],\r\n  \"email_owner\": \"payokap692@upcmaill.com\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://users.bugred.ru/tasks/rest/Createcompany",
+							"protocol": "http",
+							"host": [
+								"users",
+								"bugred",
+								"ru"
+							],
+							"path": [
+								"tasks",
+								"rest",
+								"Createcompany"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "CreateCompany_wrong_companyType",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "ed42eea3-ee35-4c3a-84ce-8600bbdcc8a9",
+								"exec": [
+									"pm.test(\"Type is correct\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.type).to.eql(\"error\");\r",
+									"});\r",
+									"pm.test(\"Message is correct\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.message).to.include(\"некорректный\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"company_name\": \"Planet Express\",\r\n  \"company_type\": \"ОО\",\r\n  \"company_users\": [\"payokap692+1@upcmaill.com\", \"payokap692+2@upcmaill.com\", \"payokap692+3@upcmaill.com\"],\r\n  \"email_owner\": \"payokap692@upcmaill.com\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://users.bugred.ru/tasks/rest/Createcompany",
+							"protocol": "http",
+							"host": [
+								"users",
+								"bugred",
+								"ru"
+							],
+							"path": [
+								"tasks",
+								"rest",
+								"Createcompany"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "CreateCompany_randomUsers",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "e245c31a-5ce2-4fa8-94e9-36240f6149b4",
+								"exec": [
+									"pm.test(\"Type is correct\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.type).to.eql(\"error\");\r",
+									"});\r",
+									"pm.test(\"Message is correct\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.message).to.include(\"company_users  не указаны сотрудники\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"company_name\": \"Planet Express\",\r\n  \"company_type\": \"ОАО\",\r\n  \"company_users\": [\"{{$randomEmail}}\"],\r\n  \"email_owner\": \"payokap692@upcmaill.com\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://users.bugred.ru/tasks/rest/Createcompany",
+							"protocol": "http",
+							"host": [
+								"users",
+								"bugred",
+								"ru"
+							],
+							"path": [
+								"tasks",
+								"rest",
+								"Createcompany"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "CreateUser",
+			"item": [
+				{
+					"name": "CreateUser_emptyEmail",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "fb30ebd9-f35c-4c22-9658-f1aaadc8d72e",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"pm.test(\"Type is correct\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.type).to.eql(\"error\");",
+									"});",
+									"pm.test(\"Message is correct\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.message).to.include(\"email неправильный!\");",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "e21d0a23-4d04-4817-a446-cd4262b01fc9",
+								"exec": [
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"email\": \"\",\r\n  \"name\": \"{{$randomUserName}}\",\r\n  \"tasks\": [\"{{task-id}}\"],\r\n  \"companies\": [\"{{id-Company}}\"],\r\n  \"password\": \"{{$randomPassword}}\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://users.bugred.ru/tasks/rest/createuser",
+							"protocol": "http",
+							"host": [
+								"users",
+								"bugred",
+								"ru"
+							],
+							"path": [
+								"tasks",
+								"rest",
+								"createuser"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "CreateUser_emptyName",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "fb30ebd9-f35c-4c22-9658-f1aaadc8d72e",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"pm.test(\"Type is correct\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.type).to.eql(\"error\");",
+									"});",
+									"pm.test(\"Message is correct\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.message).to.include(\"фио неправильный!\");",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "e21d0a23-4d04-4817-a446-cd4262b01fc9",
+								"exec": [
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"email\": \"{{$randomEmail}}\",\r\n  \"name\": \"\",\r\n  \"tasks\": [\"{{task-id}}\"],\r\n  \"companies\": [\"{{id-Company}}\"],\r\n  \"password\": \"{{$randomPassword}}\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://users.bugred.ru/tasks/rest/createuser",
+							"protocol": "http",
+							"host": [
+								"users",
+								"bugred",
+								"ru"
+							],
+							"path": [
+								"tasks",
+								"rest",
+								"createuser"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "CreateUser_emptyTasks",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "fb30ebd9-f35c-4c22-9658-f1aaadc8d72e",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"pm.test(\"Type is correct\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.type).to.eql(\"error\");",
+									"});",
+									"pm.test(\"Message is correct\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.message).to.include(\"задачи не найдены\");",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "e21d0a23-4d04-4817-a446-cd4262b01fc9",
+								"exec": [
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"email\": \"{{$randomEmail}}\",\r\n  \"name\": \"{{$randomUserName}}\",\r\n  \"tasks\": [\"\"],\r\n  \"companies\": [\"{{id-Company}}\"],\r\n  \"password\": \"{{$randomPassword}}\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://users.bugred.ru/tasks/rest/createuser",
+							"protocol": "http",
+							"host": [
+								"users",
+								"bugred",
+								"ru"
+							],
+							"path": [
+								"tasks",
+								"rest",
+								"createuser"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "CreateUser_Tasks5",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "fb30ebd9-f35c-4c22-9658-f1aaadc8d72e",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "e21d0a23-4d04-4817-a446-cd4262b01fc9",
+								"exec": [
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"email\": \"{{$randomEmail}}\",\r\n  \"name\": \"{{$randomUserName}}\",\r\n  \"tasks\": [4383, 4382, 4381, 4380, 4379 ],\r\n  \"companies\": [\"{{id-Company}}\"],\r\n  \"password\": \"{{$randomPassword}}\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://users.bugred.ru/tasks/rest/createuser",
+							"protocol": "http",
+							"host": [
+								"users",
+								"bugred",
+								"ru"
+							],
+							"path": [
+								"tasks",
+								"rest",
+								"createuser"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "CreateUser_Tasks6",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "fb30ebd9-f35c-4c22-9658-f1aaadc8d72e",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"pm.test(\"Type is correct\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.type).to.eql(\"error\");",
+									"});",
+									"pm.test(\"Message is correct\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.message).to.include(\"параметр tasks в нем размер массива должен быть не больше 5\");",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "e21d0a23-4d04-4817-a446-cd4262b01fc9",
+								"exec": [
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"email\": \"{{$randomEmail}}\",\r\n  \"name\": \"{{$randomUserName}}\",\r\n  \"tasks\": [4383, 4382, 4381, 4380, 4379, 4378 ],\r\n  \"companies\": [\"{{id-Company}}\"],\r\n  \"password\": \"{{$randomPassword}}\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://users.bugred.ru/tasks/rest/createuser",
+							"protocol": "http",
+							"host": [
+								"users",
+								"bugred",
+								"ru"
+							],
+							"path": [
+								"tasks",
+								"rest",
+								"createuser"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "CreateUser_emptyCompany",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "fb30ebd9-f35c-4c22-9658-f1aaadc8d72e",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"pm.test(\"Type is correct\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.type).to.eql(\"error\");",
+									"});",
+									"pm.test(\"Message is correct\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.message).to.include(\"компании не найдены\");",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "e21d0a23-4d04-4817-a446-cd4262b01fc9",
+								"exec": [
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"email\": \"{{$randomEmail}}\",\r\n  \"name\": \"{{$randomUserName}}\",\r\n  \"tasks\": [4383, 4382, 4381, 4380, 4379 ],\r\n  \"companies\": [],\r\n  \"password\": \"{{$randomPassword}}\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://users.bugred.ru/tasks/rest/createuser",
+							"protocol": "http",
+							"host": [
+								"users",
+								"bugred",
+								"ru"
+							],
+							"path": [
+								"tasks",
+								"rest",
+								"createuser"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "CreateUser_Company3",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "fb30ebd9-f35c-4c22-9658-f1aaadc8d72e",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "e21d0a23-4d04-4817-a446-cd4262b01fc9",
+								"exec": [
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"email\": \"{{$randomEmail}}\",\r\n  \"name\": \"{{$randomUserName}}\",\r\n  \"tasks\": [4383, 4382, 4381, 4380, 4379 ],\r\n  \"companies\": [2350, 2349, 2348],\r\n  \"password\": \"{{$randomPassword}}\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://users.bugred.ru/tasks/rest/createuser",
+							"protocol": "http",
+							"host": [
+								"users",
+								"bugred",
+								"ru"
+							],
+							"path": [
+								"tasks",
+								"rest",
+								"createuser"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "CreateUser_Company4",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "fb30ebd9-f35c-4c22-9658-f1aaadc8d72e",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"pm.test(\"Type is correct\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.type).to.eql(\"error\");",
+									"});",
+									"pm.test(\"Message is correct\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.message).to.include(\"параметр companies в нем размер массива должен быть не больше 3\");",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "e21d0a23-4d04-4817-a446-cd4262b01fc9",
+								"exec": [
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"email\": \"{{$randomEmail}}\",\r\n  \"name\": \"{{$randomUserName}}\",\r\n  \"tasks\": [4383, 4382, 4381, 4380, 4379 ],\r\n  \"companies\": [2350, 2349, 2348, 2347],\r\n  \"password\": \"{{$randomPassword}}\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://users.bugred.ru/tasks/rest/createuser",
+							"protocol": "http",
+							"host": [
+								"users",
+								"bugred",
+								"ru"
+							],
+							"path": [
+								"tasks",
+								"rest",
+								"createuser"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "CreateUser_long",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "239fe694-917c-4ae1-ae7f-e66e6c1f078a",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"email\": \"{{$randomEmail}}\",\r\n  \"name\": \"{{$randomUserName}}\",\r\n  \"tasks\": [\"{{task-id}}\"],\r\n  \"companies\": [\"{{id-Company}}\"],\r\n  \"hobby\":\"travels\",\r\n  \"adres\":\"address 1\",\r\n  \"name1\":\"Morty\",\r\n  \"surname1\":\"Smith\",\r\n  \"fathername1\":\"Jerryson\",\r\n  \"cat\":\"cat\",\r\n  \"dog\":\"dog\",\r\n  \"parrot\":\"polly\",\r\n  \"cavy\":\"hz\",\r\n  \"hamster\":\"troll\",\r\n  \"squirrel\":\"happy\",\r\n  \"phone\":\"+380500507777\",\r\n  \"inn\":\"123456789012\",\r\n  \"gender\":\"m\",\r\n  \"birthday\":\"01.01.1990\",\r\n  \"date_start\":\"11.11.2000\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://users.bugred.ru/tasks/rest/createuser",
+							"protocol": "http",
+							"host": [
+								"users",
+								"bugred",
+								"ru"
+							],
+							"path": [
+								"tasks",
+								"rest",
+								"createuser"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "CreateUser_long_tasksNotArray",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "239fe694-917c-4ae1-ae7f-e66e6c1f078a",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"pm.test(\"Type is correct\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.type).to.eql(\"error\");",
+									"});",
+									"pm.test(\"Message is correct\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.message).to.include(\"параметр tasks должен быть в виде массива\");",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"email\": \"{{$randomEmail}}\",\r\n  \"name\": \"{{$randomUserName}}\",\r\n  \"tasks\": \"{{task-id}}\",\r\n  \"companies\": [\"{{id-Company}}\"],\r\n  \"hobby\":\"travels\",\r\n  \"adres\":\"address 1\",\r\n  \"name1\":\"Morty\",\r\n  \"surname1\":\"Smith\",\r\n  \"fathername1\":\"Jerryson\",\r\n  \"cat\":\"cat\",\r\n  \"dog\":\"dog\",\r\n  \"parrot\":\"polly\",\r\n  \"cavy\":\"hz\",\r\n  \"hamster\":\"troll\",\r\n  \"squirrel\":\"happy\",\r\n  \"phone\":\"+380500507777\",\r\n  \"inn\":\"123456789012\",\r\n  \"gender\":\"m\",\r\n  \"birthday\":\"01.01.1990\",\r\n  \"date_start\":\"11.11.2000\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://users.bugred.ru/tasks/rest/createuser",
+							"protocol": "http",
+							"host": [
+								"users",
+								"bugred",
+								"ru"
+							],
+							"path": [
+								"tasks",
+								"rest",
+								"createuser"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "CreateUser_long_companyNotArray",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "239fe694-917c-4ae1-ae7f-e66e6c1f078a",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"pm.test(\"Type is correct\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.type).to.eql(\"error\");",
+									"});",
+									"pm.test(\"Message is correct\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.message).to.include(\"параметр companies должен быть в виде массива\");",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"email\": \"{{$randomEmail}}\",\r\n  \"name\": \"{{$randomUserName}}\",\r\n  \"tasks\": [\"{{task-id}}\"],\r\n  \"companies\": \"{{id-Company}}\",\r\n  \"hobby\":\"travels\",\r\n  \"adres\":\"address 1\",\r\n  \"name1\":\"Morty\",\r\n  \"surname1\":\"Smith\",\r\n  \"fathername1\":\"Jerryson\",\r\n  \"cat\":\"cat\",\r\n  \"dog\":\"dog\",\r\n  \"parrot\":\"polly\",\r\n  \"cavy\":\"hz\",\r\n  \"hamster\":\"troll\",\r\n  \"squirrel\":\"happy\",\r\n  \"phone\":\"+380500507777\",\r\n  \"inn\":\"123456789012\",\r\n  \"gender\":\"m\",\r\n  \"birthday\":\"01.01.1990\",\r\n  \"date_start\":\"11.11.2000\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://users.bugred.ru/tasks/rest/createuser",
+							"protocol": "http",
+							"host": [
+								"users",
+								"bugred",
+								"ru"
+							],
+							"path": [
+								"tasks",
+								"rest",
+								"createuser"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "CreateUser_long_genderNotM/F",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "239fe694-917c-4ae1-ae7f-e66e6c1f078a",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"pm.test(\"Type is correct\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.type).to.eql(\"error\");",
+									"});",
+									"pm.test(\"Message is correct\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.message).to.include(\"параметр gender некорректный\");",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"email\": \"{{$randomEmail}}\",\r\n  \"name\": \"{{$randomUserName}}\",\r\n  \"tasks\": [\"{{task-id}}\"],\r\n  \"companies\": [\"{{id-Company}}\"],\r\n  \"hobby\":\"travels\",\r\n  \"adres\":\"address 1\",\r\n  \"name1\":\"Morty\",\r\n  \"surname1\":\"Smith\",\r\n  \"fathername1\":\"Jerryson\",\r\n  \"cat\":\"cat\",\r\n  \"dog\":\"dog\",\r\n  \"parrot\":\"polly\",\r\n  \"cavy\":\"hz\",\r\n  \"hamster\":\"troll\",\r\n  \"squirrel\":\"happy\",\r\n  \"phone\":\"+380500507777\",\r\n  \"inn\":\"123456789012\",\r\n  \"gender\":\"1\",\r\n  \"birthday\":\"01.01.1990\",\r\n  \"date_start\":\"11.11.2000\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://users.bugred.ru/tasks/rest/createuser",
+							"protocol": "http",
+							"host": [
+								"users",
+								"bugred",
+								"ru"
+							],
+							"path": [
+								"tasks",
+								"rest",
+								"createuser"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "CreateUser_long_notValidDate",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "239fe694-917c-4ae1-ae7f-e66e6c1f078a",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"pm.test(\"Type is correct\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.type).to.eql(\"error\");",
+									"});",
+									"pm.test(\"Message is correct\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.message).to.include(\"параметр birthday некорректный\");",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"email\": \"{{$randomEmail}}\",\r\n  \"name\": \"{{$randomUserName}}\",\r\n  \"tasks\": [\"{{task-id}}\"],\r\n  \"companies\": [\"{{id-Company}}\"],\r\n  \"hobby\":\"travels\",\r\n  \"adres\":\"address 1\",\r\n  \"name1\":\"Morty\",\r\n  \"surname1\":\"Smith\",\r\n  \"fathername1\":\"Jerryson\",\r\n  \"cat\":\"cat\",\r\n  \"dog\":\"dog\",\r\n  \"parrot\":\"polly\",\r\n  \"cavy\":\"hz\",\r\n  \"hamster\":\"troll\",\r\n  \"squirrel\":\"happy\",\r\n  \"phone\":\"+380500507777\",\r\n  \"inn\":\"123456789012\",\r\n  \"gender\":\"m/f\",\r\n  \"birthday\":\"13.13.90\",\r\n  \"date_start\":\"10.10.2000\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://users.bugred.ru/tasks/rest/createuser",
+							"protocol": "http",
+							"host": [
+								"users",
+								"bugred",
+								"ru"
+							],
+							"path": [
+								"tasks",
+								"rest",
+								"createuser"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "CreateUserWithTasks",
+			"item": [
+				{
+					"name": "CreateUserWithTasks",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "b2c1dfbf-0c38-4758-b748-49c38d91838e",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n \"email\": \"{{$randomEmail}}\",\r\n \"name\": \"{{$randomUserName}}\",\r\n \"tasks\": [{\r\n   \"title\": \"Surf\",\r\n   \"description\": \"Learn to surf\"\r\n  },\r\n  {\r\n   \"title\": \"Drunk\",\r\n   \"description\": \"Drink more with Kif\"\r\n  },\r\n  {\r\n   \"title\": \"Celebration\",\r\n   \"description\": \"Birthday on Mars\"\r\n  }\r\n ]\r\n}\r\n\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://users.bugred.ru/tasks/rest/createuserwithtasks",
+							"protocol": "http",
+							"host": [
+								"users",
+								"bugred",
+								"ru"
+							],
+							"path": [
+								"tasks",
+								"rest",
+								"createuserwithtasks"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "CreateUserWithTasksLong",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "b2c1dfbf-0c38-4758-b748-49c38d91838e",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n \"email\": \"{{$randomEmail}}\",\r\n \"name\": \"{{$randomUserName}}\",\r\n \"tasks\":  [{\r\n   \"title\": \"Surf\",\r\n   \"description\": \"Learn to surf\"\r\n  },\r\n  {\r\n   \"title\": \"Drunk\",\r\n   \"description\": \"Drink more with Kif\"\r\n  },\r\n  {\r\n   \"title\": \"Celebration\",\r\n   \"description\": \"Birthday on Mars\"\r\n  }\r\n ],\r\n \"companies\": [19, 20, 22],\r\n \"hobby\":\"Стрельба из лука, Настолки\",\r\n  \"adres\":\"адрес 1\",\r\n  \"name1\":\"Тестовый, ясен пень\",\r\n  \"surname1\":\"Иванов\",\r\n  \"fathername1\":\"Петров\",\r\n  \"cat\":\"Маруся\",\r\n  \"dog\":\"Ушастый\",\r\n  \"parrot\":\"Васька\",\r\n  \"cavy\":\"Кто ты?\",\r\n  \"hamster\":\"Хомяк\",\r\n  \"squirrel\":\"Белая горячка к нам пришла\",\r\n  \"phone\":\"333 33 33\",\r\n  \"inn\":\"123456789012\",\r\n  \"gender\":\"m\",\r\n  \"birthday\":\"01.01.1900\",\r\n  \"date_start\":\"11.11.2000\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://users.bugred.ru/tasks/rest/createuserwithtasks",
+							"protocol": "http",
+							"host": [
+								"users",
+								"bugred",
+								"ru"
+							],
+							"path": [
+								"tasks",
+								"rest",
+								"createuserwithtasks"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "CreateUserWithTasksLong_noCompanies",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "b2c1dfbf-0c38-4758-b748-49c38d91838e",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n \"email\": \"{{$randomEmail}}\",\r\n \"name\": \"{{$randomUserName}}\",\r\n \"tasks\":  [{\r\n   \"title\": \"Surf\",\r\n   \"description\": \"Learn to surf\"\r\n  },\r\n  {\r\n   \"title\": \"Drunk\",\r\n   \"description\": \"Drink more with Kif\"\r\n  },\r\n  {\r\n   \"title\": \"Celebration\",\r\n   \"description\": \"Birthday on Mars\"\r\n  }\r\n ],\r\n \"hobby\":\"Стрельба из лука, Настолки\",\r\n  \"adres\":\"адрес 1\",\r\n  \"name1\":\"Тестовый, ясен пень\",\r\n  \"surname1\":\"Иванов\",\r\n  \"fathername1\":\"Петров\",\r\n  \"cat\":\"Маруся\",\r\n  \"dog\":\"Ушастый\",\r\n  \"parrot\":\"Васька\",\r\n  \"cavy\":\"Кто ты?\",\r\n  \"hamster\":\"Хомяк\",\r\n  \"squirrel\":\"Белая горячка к нам пришла\",\r\n  \"phone\":\"333 33 33\",\r\n  \"inn\":\"123456789012\",\r\n  \"gender\":\"m\",\r\n  \"birthday\":\"01.01.1900\",\r\n  \"date_start\":\"11.11.2000\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://users.bugred.ru/tasks/rest/createuserwithtasks",
+							"protocol": "http",
+							"host": [
+								"users",
+								"bugred",
+								"ru"
+							],
+							"path": [
+								"tasks",
+								"rest",
+								"createuserwithtasks"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "CreateUserWithTasksLong_ИНН11",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "b2c1dfbf-0c38-4758-b748-49c38d91838e",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"pm.test(\"Type is correct\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.type).to.eql(\"error\");",
+									"});",
+									"pm.test(\"Message is correct\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.message).to.include(\"должен содержать 12 цифр\");",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n \"email\": \"{{$randomEmail}}\",\r\n \"name\": \"{{$randomUserName}}\",\r\n \"tasks\":  [{\r\n   \"title\": \"Surf\",\r\n   \"description\": \"Learn to surf\"\r\n  },\r\n  {\r\n   \"title\": \"Drunk\",\r\n   \"description\": \"Drink more with Kif\"\r\n  },\r\n  {\r\n   \"title\": \"Celebration\",\r\n   \"description\": \"Birthday on Mars\"\r\n  }\r\n ],\r\n \"companies\": [19, 20, 22],\r\n \"hobby\":\"Стрельба из лука, Настолки\",\r\n  \"adres\":\"адрес 1\",\r\n  \"name1\":\"Тестовый, ясен пень\",\r\n  \"surname1\":\"Иванов\",\r\n  \"fathername1\":\"Петров\",\r\n  \"cat\":\"Маруся\",\r\n  \"dog\":\"Ушастый\",\r\n  \"parrot\":\"Васька\",\r\n  \"cavy\":\"Кто ты?\",\r\n  \"hamster\":\"Хомяк\",\r\n  \"squirrel\":\"Белая горячка к нам пришла\",\r\n  \"phone\":\"333 33 33\",\r\n  \"inn\":\"12345678902\",\r\n  \"gender\":\"m\",\r\n  \"birthday\":\"01.01.1900\",\r\n  \"date_start\":\"11.11.2000\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://users.bugred.ru/tasks/rest/createuserwithtasks",
+							"protocol": "http",
+							"host": [
+								"users",
+								"bugred",
+								"ru"
+							],
+							"path": [
+								"tasks",
+								"rest",
+								"createuserwithtasks"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "CreateUserWithTasksLong_ИНН13",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "b2c1dfbf-0c38-4758-b748-49c38d91838e",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"pm.test(\"Type is correct\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.type).to.eql(\"error\");",
+									"});",
+									"pm.test(\"Message is correct\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.message).to.include(\"должен содержать 12 цифр\");",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n \"email\": \"{{$randomEmail}}\",\r\n \"name\": \"{{$randomUserName}}\",\r\n \"tasks\":  [{\r\n   \"title\": \"Surf\",\r\n   \"description\": \"Learn to surf\"\r\n  },\r\n  {\r\n   \"title\": \"Drunk\",\r\n   \"description\": \"Drink more with Kif\"\r\n  },\r\n  {\r\n   \"title\": \"Celebration\",\r\n   \"description\": \"Birthday on Mars\"\r\n  }\r\n ],\r\n \"companies\": [19, 20, 22],\r\n \"hobby\":\"Стрельба из лука, Настолки\",\r\n  \"adres\":\"адрес 1\",\r\n  \"name1\":\"Тестовый, ясен пень\",\r\n  \"surname1\":\"Иванов\",\r\n  \"fathername1\":\"Петров\",\r\n  \"cat\":\"Маруся\",\r\n  \"dog\":\"Ушастый\",\r\n  \"parrot\":\"Васька\",\r\n  \"cavy\":\"Кто ты?\",\r\n  \"hamster\":\"Хомяк\",\r\n  \"squirrel\":\"Белая горячка к нам пришла\",\r\n  \"phone\":\"333 33 33\",\r\n  \"inn\":\"1234567890122\",\r\n  \"gender\":\"m\",\r\n  \"birthday\":\"01.01.1900\",\r\n  \"date_start\":\"11.11.2000\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://users.bugred.ru/tasks/rest/createuserwithtasks",
+							"protocol": "http",
+							"host": [
+								"users",
+								"bugred",
+								"ru"
+							],
+							"path": [
+								"tasks",
+								"rest",
+								"createuserwithtasks"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "CreateUserWithTasks_dupEmail",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "55864106-0bbf-40f0-a291-fc5d72db64e5",
+								"exec": [
+									"pm.test(\"Type is correct\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.type).to.eql(\"error\");",
+									"});",
+									"pm.test(\"Message is correct\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.message).to.include(\"Пользователь с таким email уже существует\");",
+									"});",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n \"email\": \"{{e-mailLogin}}\",\r\n \"name\": \"{{$randomUserName}}\",\r\n \"tasks\": [{\r\n   \"title\": \"Surf\",\r\n   \"description\": \"Learn to surf\"\r\n  },\r\n  {\r\n   \"title\": \"Drunk\",\r\n   \"description\": \"Drink more with Kif\"\r\n  },\r\n  {\r\n   \"title\": \"Celebration\",\r\n   \"description\": \"Birthday on Mars\"\r\n  }\r\n ]\r\n}\r\n\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://users.bugred.ru/tasks/rest/createuserwithtasks",
+							"protocol": "http",
+							"host": [
+								"users",
+								"bugred",
+								"ru"
+							],
+							"path": [
+								"tasks",
+								"rest",
+								"createuserwithtasks"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "doRegister",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "ed48a595-bbe6-4edf-a7f2-85761ee682c5",
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "20976408-899d-4546-a784-8639ece881cd",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"var jsonData = pm.response.json();",
+							"console.log('JSON_DATA', jsonData);",
+							"pm.globals.set(\"e-mail-login\", jsonData.email);",
+							"pm.globals.set(\"name-login\", jsonData.name);",
+							"pm.globals.set(\"password-login\", jsonData.password);",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\": \"{{$randomEmail}}\",\r\n    \"name\": \"{{$randomUserName}}\",\r\n    \"password\": \"{{$randomPassword}}\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://users.bugred.ru/tasks/rest/doregister?e-mail-login={{e-mail-login}}&name-login={{name-login}}&password-login={{password-login}}",
+					"protocol": "http",
+					"host": [
+						"users",
+						"bugred",
+						"ru"
+					],
+					"path": [
+						"tasks",
+						"rest",
+						"doregister"
+					],
+					"query": [
+						{
+							"key": "e-mail-login",
+							"value": "{{e-mail-login}}"
+						},
+						{
+							"key": "name-login",
+							"value": "{{name-login}}"
+						},
+						{
+							"key": "password-login",
+							"value": "{{password-login}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CreateUser",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "fb30ebd9-f35c-4c22-9658-f1aaadc8d72e",
+						"exec": [
+							"const jsonData = pm.response.json();\r",
+							"console.log('JSON_DATA', jsonData);\r",
+							"pm.globals.set(\"e-mailLogin\", jsonData.email);\r",
+							"\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"pm.globals.set(\"password-login\", jsonData.password);"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "e21d0a23-4d04-4817-a446-cd4262b01fc9",
+						"exec": [
+							"",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"email\": \"{{$randomEmail}}\",\r\n  \"name\": \"{{$randomUserName}}\",\r\n  \"tasks\": [\"{{task-id}}\"],\r\n  \"companies\": [\"{{id-Company}}\"],\r\n  \"password\": \"{{$randomPassword}}\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://users.bugred.ru/tasks/rest/createuser?e-mailLogin={{e-mailLogin}}&password-login={{password-login}}",
+					"protocol": "http",
+					"host": [
+						"users",
+						"bugred",
+						"ru"
+					],
+					"path": [
+						"tasks",
+						"rest",
+						"createuser"
+					],
+					"query": [
+						{
+							"key": "e-mailLogin",
+							"value": "{{e-mailLogin}}"
+						},
+						{
+							"key": "password-login",
+							"value": "{{password-login}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getUser",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "3683760c-7e76-47dc-bfaf-27bc897f8c83",
+						"exec": [
+							"pm.globals.get(\"e-mail-login\");"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "0af37ef5-847c-4715-a826-9f735ec9ff6e",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"var jsonData = pm.response.json();",
+							"console.log('JSON_DATA', jsonData);",
+							"",
+							"pm.globals.set(\"name-login\", jsonData.name);",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n \"email\": \"{{e-mailLogin}}\"\r\n }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://users.bugred.ru/tasks/rest/getuser?name-login={{name-login}}",
+					"protocol": "http",
+					"host": [
+						"users",
+						"bugred",
+						"ru"
+					],
+					"path": [
+						"tasks",
+						"rest",
+						"getuser"
+					],
+					"query": [
+						{
+							"key": "name-login",
+							"value": "{{name-login}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "AddAvatar",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "f2a97648-5474-4116-b190-a5a9e2a74e24",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "email",
+							"value": "{{e-mailLogin}}",
+							"type": "text"
+						},
+						{
+							"key": "avatar",
+							"type": "file",
+							"src": "/C:/Users/Yaroslava/Documents/Bandicam/for_postman123.jpg"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://users.bugred.ru/tasks/rest/addavatar",
+					"protocol": "http",
+					"host": [
+						"users",
+						"bugred",
+						"ru"
+					],
+					"path": [
+						"tasks",
+						"rest",
+						"addavatar"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DeleteAvatar",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "f2a97648-5474-4116-b190-a5a9e2a74e24",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "email",
+							"value": "{{e-mailLogin}}",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://users.bugred.ru/tasks/rest/deleteavatar",
+					"protocol": "http",
+					"host": [
+						"users",
+						"bugred",
+						"ru"
+					],
+					"path": [
+						"tasks",
+						"rest",
+						"deleteavatar"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}

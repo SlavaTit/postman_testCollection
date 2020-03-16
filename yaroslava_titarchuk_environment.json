@@ -1,0 +1,24 @@
+{
+	"id": "f7d0cb7c-3a5f-4d45-a290-d720e7170c48",
+	"name": "Status Checker",
+	"values": [
+		{
+			"key": "url",
+			"value": "https://bae50564-618d-4aac-af5f-b1f5c9273b06.mock.pstmn.io",
+			"enabled": true
+		},
+		{
+			"key": "id-Company",
+			"value": "",
+			"enabled": true
+		},
+		{
+			"key": "task-id",
+			"value": "",
+			"enabled": true
+		}
+	],
+	"_postman_variable_scope": "environment",
+	"_postman_exported_at": "2020-03-14T20:32:33.934Z",
+	"_postman_exported_using": "Postman/7.20.1"
+}
